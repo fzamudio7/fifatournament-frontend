@@ -1,23 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Navbar, Nav } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import NewTournament from './components/newTournament';
+import RegisteredTournament from './components/registeredTournaments';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header >
+      <Router>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="/newTournament">FIFA Manager</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="/newTournament">New Tournament</Nav.Link>
+            <Nav.Link href="/registeredTournaments">Registered Tournaments</Nav.Link>
+          </Nav>
+        </Navbar>
+        <br/>
+        <Switch>
+            <Route exact path="/">
+              <NewTournament />
+            </Route>
+            <Route path="/newTournament">
+                <NewTournament />
+            </Route>
+            <Route path="/registeredTournaments">
+                <RegisteredTournament />
+            </Route>
+        </Switch>
+      </Router>
       </header>
     </div>
   );
